@@ -35,35 +35,36 @@ export default function GameplayMap() {
   const loadingMessage = [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}]
   const [crimeSceneList, setCrimeSceneList] = useState(loadingMessage)
   
-  useEffect(() => {
-    const getAllGardens = async () => {
-      let fetchUrl = "/api/garden/get"
-      let response = await fetch(fetchUrl)
-      let resObject = await response.json()
-      let listResult = resObject.gardenList
+  // useEffect(() => {
+  //   const getAllGardens = async () => {
+  //     let fetchUrl = "/api/garden/get"
+  //     let response = await fetch(fetchUrl)
+  //     let resObject = await response.json()
+  //     let listResult = resObject.gardenList
 
-      setCrimeSceneList(listResult)
-    }
-    getAllGardens()
-  }, [])
+  //     setCrimeSceneList(listResult)
+  //   }
+  //   getAllGardens()
+  // }, [])
 
   // Prevent re-rendering of data
   const data = useMemo(() => crimeSceneList, [crimeSceneList])
 
   const onMapClick = React.useCallback(
     (event) => {
-      setCrimeSceneList({
+      setCrimeSceneList([...crimeSceneList, {
         lat: event.latLng.lat(),
         lng: event.latLng.lng()
-      })
+      }])
     },
-    [setCrimeSceneList]
+    [setCrimeSceneList, crimeSceneList]
   )
 
   const [selected, setSelected] = React.useState(null)
 
   if (loadError) return "Error loading maps"
   if (!isLoaded) return "Loading Maps"
+
   return (
     <div>
       <GoogleMap
@@ -74,18 +75,6 @@ export default function GameplayMap() {
         onClick={onMapClick}
       >
         
-        <Marker
-          key={"created_marker"}
-          position={{ lat: formCoordinates.lat, lng: formCoordinates.lng }}
-          /* icon={{
-                  url: "/vegetables.svg",
-                  scaledSize: new window.google.maps.Size(30,30),
-                  origin: new window.google.maps.Point(0,0),
-                  anchor: new window.google.maps.Point(15,15)
-              }} */
-        />
-        
-
         {data.map(function (marker, index) {
           return (
             <Marker
