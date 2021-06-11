@@ -20,3 +20,6 @@
 .node_repl_history
 .yarn-integrity
 .next
+.env.*.local
+.env.local
+.env
