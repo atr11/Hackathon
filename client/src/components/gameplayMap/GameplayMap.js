@@ -51,24 +51,17 @@ export default function GameplayMap() {
   const data = useMemo(() => crimeSceneList, [crimeSceneList])
 
   const onMapClick = React.useCallback((event) => {
-    console.log('onMapClick event:', event)
-    // if (crimeSceneList === loadingMessage) {
-    //   setCrimeSceneList([{
-    //     lat: event.latLng.lat(),
-    //     lng: event.latLng.lng()
-    //   }])
-    // } 
-
-    // else {
-    //   setCrimeSceneList([
-    //     ...crimeSceneList, 
-    //     {
-    //       lat: event.latLng.lat(),
-    //       lng: event.latLng.lng()
-    //     }
-    //   ])
-    // }
-  }, [setCrimeSceneList, crimeSceneList, loadingMessage]
+    console.log('onMapClick event:', event.latLng)
+    
+    setCrimeSceneList([
+      ...crimeSceneList, 
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      }
+    ])
+    
+  }, [setCrimeSceneList, crimeSceneList]
   )
 
   const [selected, setSelected] = React.useState(null)
@@ -88,8 +81,8 @@ export default function GameplayMap() {
       {data.map(function (marker, index) {
         return (
           <Marker
-            key={marker.name}
-            position={{lat: parseFloat(marker.coordinates.lat), lng: parseFloat(marker.coordinates.lng)}}
+            key={index}
+            position={{lat: parseFloat(marker.lat), lng: parseFloat(marker.lng)}}
             onMouseOver={() => {
               setSelected(marker)
             }}
@@ -99,12 +92,12 @@ export default function GameplayMap() {
       {selected 
         ? (
           <InfoWindow
-            position={{lat: parseFloat(selected.coordinates.lat), lng: parseFloat(selected.coordinates.lng)}}
+            position={{lat: parseFloat(selected.lat), lng: parseFloat(selected.lng)}}
             onCloseClick={() => {
               setSelected(null)
             }}
           >
-            <div style={{ fontWeight: "bold" }}>{selected.name}</div>
+            <div style={{ fontWeight: "bold" }}>Body Found!</div>
           </InfoWindow>
       ) : null
       }
