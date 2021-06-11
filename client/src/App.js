@@ -1,9 +1,6 @@
 import './App.css';
+import GameplayMap from './components/gameplayMap/GameplayMap';
 
-const App = () => {
-  return (
-    <h1>App</h1>
-  );
-};
+const App = () => <GameplayMap />
 
 export default App;

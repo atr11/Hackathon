@@ -32,7 +32,7 @@ export default function GameplayMap() {
   })
 
   // This is passed through the first Marker array
-  const loadingMessage = [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}]
+  const loadingMessage = useMemo(() => [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}], [])
   const [crimeSceneList, setCrimeSceneList] = useState(loadingMessage)
   
   // useEffect(() => {
@@ -50,14 +50,25 @@ export default function GameplayMap() {
   // Prevent re-rendering of data
   const data = useMemo(() => crimeSceneList, [crimeSceneList])
 
-  const onMapClick = React.useCallback(
-    (event) => {
-      setCrimeSceneList([...crimeSceneList, {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng()
-      }])
-    },
-    [setCrimeSceneList, crimeSceneList]
+  const onMapClick = React.useCallback((event) => {
+    console.log('onMapClick event:', event)
+    // if (crimeSceneList === loadingMessage) {
+    //   setCrimeSceneList([{
+    //     lat: event.latLng.lat(),
+    //     lng: event.latLng.lng()
+    //   }])
+    // } 
+
+    // else {
+    //   setCrimeSceneList([
+    //     ...crimeSceneList, 
+    //     {
+    //       lat: event.latLng.lat(),
+    //       lng: event.latLng.lng()
+    //     }
+    //   ])
+    // }
+  }, [setCrimeSceneList, crimeSceneList, loadingMessage]
   )
 
   const [selected, setSelected] = React.useState(null)
