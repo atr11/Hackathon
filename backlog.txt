@@ -1,0 +1,41 @@
+USERS
+- player
+
+app structure:
+
+Homepage 
+    - Gameplay
+        * Progress stats
+    - Leaderboard?
+
+--------------------
+Tasks
+
+Bring in GoogleMaps component
+
+Write the narrative of the game (plot)
+- destinations + clues for each
+- dynamic story, slightly randomized
+
+Write the game logic
+- Read a clue suggesting the next location
+- Choose where to go next
+
+Import images for story and integrate into components
+
+
+
+
+-----------------------------
+Stories
+
+As a user, I can:
+- Spawn into the game, as a medium going about life.
+- Get contacted by investigators/Interpol to help in a serial killer case
+- Visit the first crime scene
+- Read a clue suggesting the next location
+- Choose where to go next
+
+
+
+
