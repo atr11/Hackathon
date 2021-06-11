@@ -66,28 +66,27 @@ export default function GameplayMap() {
   if (!isLoaded) return "Loading Maps"
 
   return (
-    <div>
-      <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={10.5}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-      >
-        
-        {data.map(function (marker, index) {
-          return (
-            <Marker
-              key={marker.name}
-              position={{lat: parseFloat(marker.coordinates.lat), lng: parseFloat(marker.coordinates.lng)}}
-              onMouseOver={() => {
-                setSelected(marker)
-              }}
-            />
-          )
-        })}
-
-        {selected ? (
+    <GoogleMap
+      mapContainerStyle={mapContainerStyle}
+      zoom={10.5}
+      center={center}
+      options={options}
+      onClick={onMapClick}
+    >
+      
+      {data.map(function (marker, index) {
+        return (
+          <Marker
+            key={marker.name}
+            position={{lat: parseFloat(marker.coordinates.lat), lng: parseFloat(marker.coordinates.lng)}}
+            onMouseOver={() => {
+              setSelected(marker)
+            }}
+          />
+        )
+      })}
+      {selected 
+        ? (
           <InfoWindow
             position={{lat: parseFloat(selected.coordinates.lat), lng: parseFloat(selected.coordinates.lng)}}
             onCloseClick={() => {
@@ -96,8 +95,8 @@ export default function GameplayMap() {
           >
             <div style={{ fontWeight: "bold" }}>{selected.name}</div>
           </InfoWindow>
-        ) : null}
-      </GoogleMap>
-    </div>
+      ) : null
+      }
+    </GoogleMap> 
   )
 }
