@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const locationSchema = new Schema({
   cityname: String,
+  type: String,
   description: String,
   lat: Number,
   lng: Number
