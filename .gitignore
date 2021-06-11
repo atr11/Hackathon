@@ -16,10 +16,7 @@
 *.seed
 *.tgz
 .DS_Store
-.env.*.local
-.env.local
 .eslintcache
 .node_repl_history
 .yarn-integrity
 .next
-.env

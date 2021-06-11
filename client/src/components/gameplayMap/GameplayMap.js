@@ -25,11 +25,7 @@ const options = {
   zoomControl: true
 }
 
-export default function GardenMap({
-  isFormDisplayed,
-  formCoordinates,
-  setFormCoordinates
-}) {
+export default function GameplayMap() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries
@@ -37,7 +33,7 @@ export default function GardenMap({
 
   // This is passed through the first Marker array
   const loadingMessage = [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}]
-  const [gardenList, setGardenList] = useState(loadingMessage)
+  const [crimeSceneList, setCrimeSceneList] = useState(loadingMessage)
   
   useEffect(() => {
     const getAllGardens = async () => {
@@ -46,33 +42,23 @@ export default function GardenMap({
       let resObject = await response.json()
       let listResult = resObject.gardenList
 
-      setGardenList(listResult)
+      setCrimeSceneList(listResult)
     }
     getAllGardens()
   }, [])
 
   // Prevent re-rendering of data
-  const data = useMemo(() => gardenList, [gardenList])
+  const data = useMemo(() => crimeSceneList, [crimeSceneList])
 
   const onMapClick = React.useCallback(
     (event) => {
-      setFormCoordinates({
+      setCrimeSceneList({
         lat: event.latLng.lat(),
         lng: event.latLng.lng()
       })
     },
-    [setFormCoordinates]
+    [setCrimeSceneList]
   )
-
-  useEffect(() => {
-    if (isFormDisplayed) {
-      setFormCoordinates({
-        lat: 0,
-        lng: 0
-      })
-    }
-    // eslint-disable-next-line
-  }, [isFormDisplayed])
 
   const [selected, setSelected] = React.useState(null)
 
@@ -85,21 +71,20 @@ export default function GardenMap({
         zoom={10.5}
         center={center}
         options={options}
-        onClick={isFormDisplayed ? onMapClick : null}
+        onClick={onMapClick}
       >
-        {isFormDisplayed ? (
-          <Marker
-            key={"created_marker"}
-            position={{ lat: formCoordinates.lat, lng: formCoordinates.lng }}
-
-            /* icon={{
-                    url: "/vegetables.svg",
-                    scaledSize: new window.google.maps.Size(30,30),
-                    origin: new window.google.maps.Point(0,0),
-                    anchor: new window.google.maps.Point(15,15)
-                }} */
-          />
-        ) : null}
+        
+        <Marker
+          key={"created_marker"}
+          position={{ lat: formCoordinates.lat, lng: formCoordinates.lng }}
+          /* icon={{
+                  url: "/vegetables.svg",
+                  scaledSize: new window.google.maps.Size(30,30),
+                  origin: new window.google.maps.Point(0,0),
+                  anchor: new window.google.maps.Point(15,15)
+              }} */
+        />
+        
 
         {data.map(function (marker, index) {
           return (
