@@ -9,7 +9,7 @@ var passport = require('passport');
 // require('./auth/configurePassport')
 
 //IMPORT ROUTES
-var apiRouter = require('./api/apiRouter');
+var apiRouter = require('./routes/apiRouter');
 
 var app = express();
 
