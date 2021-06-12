@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "28DaysLater";
+  src: url("28DayLater.ttf") format("ttf");
+}
+  * {
+    font-family: myFirstFont;
+ }
+
+.main-background{
+  background-color: #7f8d89;
+}
+
 .title-bar {
   background-color: blue;
   color: white;
@@ -11,4 +23,52 @@
 .title-bar a {
   color: white;
   margin-right: 1em;
+}
+
+.map-and-story {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: flex-start;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+  
+}
+
+.intro-content {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.intro-content p {
+  font-size: calc(10px + 0.8vw);
+  margin-right: 10px;
+  color: #1C1C1C;
+}
+
+.intro {
+  margin: 10px;
+  max-width: calc(100vw - 500px);
+  min-width: 389.65px;
+  width: auto;
+
+}
+
+.intro-header {
+  text-align: left;
+  background-color: #BB000E;
+  color: #EDF5E1;
+  margin: 10px 0px 0px 10px;
+  font-size: 25px;
+  font-family: '28DaysLater', sans-serif;
+}
+
+.intro-header-container {
+  min-height: 60px;
+  background-color: #BB000E;
+  color: #EDF5E1;
+  padding: 5px;
+  font-family: 'Recursive', sans-serif;
+  justify-content: flex-start;
 }

@@ -1,6 +1,33 @@
 import './App.css';
 import GameplayMap from './components/gameplayMap/GameplayMap';
 
-const App = () => <GameplayMap />
+function App () {
+  return(
+    <div className="main-background">
+        <div className="map-and-story">
+          <div className="intro">
+            <div className="intro-header-container">
+              <h1 className="intro-header">Global Predator</h1>
+            </div>
+            <div className="intro-content">
+              <div>
+                <p>
+                You thought a peaceful life was ahead but peace doesn't exist when other's thoughts drift through your mind"
+                </p>
+              </div>
+            </div>
+          </div>
+          <GameplayMap />
+        </div>
+        <div>
+            <button> Start </button>
+            <div>
+                <p> Story text can go here</p>
+            </div>
+        </div>
+    </div>    
+  )  
+}
 
 export default App;
+

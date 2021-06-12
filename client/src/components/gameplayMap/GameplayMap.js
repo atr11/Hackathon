@@ -9,10 +9,9 @@ import mapStyles from "./mapStyles"
 
 const libraries = ["places"]
 const mapContainerStyle = {
-  width: "50vw",
-  height: "685px",
-  border: "4px solid #05386B",
-  borderRadius: "20px",
+  width: "70vw",
+  height: "500px",
+  border: "4px solid #BB000E",
   minWidth: "575px"
 }
 const center = {
