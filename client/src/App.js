@@ -1,6 +1,7 @@
 import './App.css';
 import GameplayMap from './components/gameplayMap/GameplayMap';
 
+
 function App () {
   return(
     <div className="main-background">
@@ -9,13 +10,11 @@ function App () {
             <div className="intro-header-container">
               <h1 className="intro-header">Global Predator</h1>
             </div>
-            <div className="intro-content">
-              <div>
-                <p>
-                You thought a peaceful life was ahead but peace doesn't exist when other's thoughts drift through your mind"
-                </p>
-              </div>
-            </div>
+                <div className="intro-tagline">
+                    <p>
+                    You thought a peaceful life lay ahead but peace doesn't exist when other people's thoughts drift through your mind
+                    </p>
+                </div>
           </div>
           <GameplayMap />
         </div>

@@ -71,7 +71,7 @@ export default function GameplayMap() {
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
-      zoom={10.5}
+      zoom={1}
       center={center}
       options={options}
       onClick={onMapClick}
