@@ -1,3 +1,6 @@
 .DisplayText {
     color: #3e0000;
+    display: right;
+    flex-flow: row wrap;
+    justify-content: space-around; 
 }

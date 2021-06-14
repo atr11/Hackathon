@@ -203,17 +203,17 @@ function App () {
       </div>
       <div>
         <div className="map-display-container">
-          <div className= "map-and story">
+          <div className= "map-and-story">
             <GameplayMap itemsToMap={itemsToMap} setCurrentLocation={setCurrentLocation} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
             <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
-          </div> 
-          <div>
+          </div>
+          <div className="moves-container">
             MOVES: {moveCounter}
           </div>
-          <div>
+          <div className="rank-container">
             RANKING: {rank}
           </div>
-          <div>
+          <div className="reset-game">
             <button onClick={resetGame}> Start Over! </button>
           </div>
         </div>
