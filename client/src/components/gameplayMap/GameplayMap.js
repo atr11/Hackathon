@@ -6,6 +6,7 @@ import {
   useLoadScript
 } from "@react-google-maps/api"
 import mapStyles from "./mapStyles"
+import InitMap from "./InitMap"
 
 const libraries = ["places"]
 const mapContainerStyle = {
@@ -24,7 +25,7 @@ const options = {
   zoomControl: true
 }
 
-export default function GameplayMap( {itemsToMap} ) {
+export default function GameplayMap( {itemsToMap, setMoveCounter} ) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries
@@ -34,6 +35,21 @@ export default function GameplayMap( {itemsToMap} ) {
   const loadingMessage = useMemo(() => [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}], [])
   const [crimeSceneList, setCrimeSceneList] = useState(loadingMessage)
   
+  
+  // useEffect(() => {
+  //   const markItemsToMap = async () => {
+  //     let counter = 0
+  //     console.log("itemsToMap = ", itemsToMap)
+  //     for (counter = 0; counter < itemsToMap.length; counter++) {
+  //       itemsToMap[counter].setMap(map)
+  //       // InitMap(itemsToMap[counter].city, itemsToMap[counter].lat, itemsToMap[counter].lng)
+  //     }
+  //   }
+  //   markItemsToMap()
+  // }, [itemsToMap])
+
+
+
   // useEffect(() => {
   //   const getAllGardens = async () => {
   //     let fetchUrl = "/api/garden/get"
@@ -68,6 +84,7 @@ export default function GameplayMap( {itemsToMap} ) {
   if (loadError) return "Error loading maps"
   if (!isLoaded) return "Loading Maps"
 
+
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
@@ -76,8 +93,9 @@ export default function GameplayMap( {itemsToMap} ) {
       options={options}
       onClick={onMapClick}
     >
-      
-      {data.map(function (marker, index) {
+
+      {itemsToMap.map(function (marker, index) {
+      // {data.map(function (marker, index) {
         return (
           <Marker
             key={index}
@@ -96,7 +114,7 @@ export default function GameplayMap( {itemsToMap} ) {
               setSelected(null)
             }}
           >
-            <div style={{ fontWeight: "bold" }}>Body Found!</div>
+            <div style={{ fontWeight: "bold" }}>Lat: {parseFloat(selected.lat)} Lng: {parseFloat(selected.lng)}</div>
           </InfoWindow>
       ) : null
       }

@@ -135,7 +135,7 @@ function App () {
       <div>
         <div className="map-display-container">
           <div className= "map-and story">
-            <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} />
+            <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
             <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
           </div> 
           <div>
