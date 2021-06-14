@@ -6,7 +6,6 @@ import {
   useLoadScript
 } from "@react-google-maps/api"
 import mapStyles from "./mapStyles"
-import InitMap from "./InitMap"
 
 const libraries = ["places"]
 const mapContainerStyle = {
@@ -25,7 +24,7 @@ const options = {
   zoomControl: true
 }
 
-export default function GameplayMap( {itemsToMap, setMoveCounter} ) {
+export default function GameplayMap( {itemsToMap, setCurrentLocation, moveCounter, setMoveCounter} ) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries
@@ -35,20 +34,6 @@ export default function GameplayMap( {itemsToMap, setMoveCounter} ) {
   const loadingMessage = useMemo(() => [{name: 'Loading...', address: "This won't take long!", "coordinates":{"lat":"0","lng":"0"}}], [])
   const [crimeSceneList, setCrimeSceneList] = useState(loadingMessage)
   
-  
-  // useEffect(() => {
-  //   const markItemsToMap = async () => {
-  //     let counter = 0
-  //     console.log("itemsToMap = ", itemsToMap)
-  //     for (counter = 0; counter < itemsToMap.length; counter++) {
-  //       itemsToMap[counter].setMap(map)
-  //       // InitMap(itemsToMap[counter].city, itemsToMap[counter].lat, itemsToMap[counter].lng)
-  //     }
-  //   }
-  //   markItemsToMap()
-  // }, [itemsToMap])
-
-
 
   // useEffect(() => {
   //   const getAllGardens = async () => {
@@ -84,7 +69,6 @@ export default function GameplayMap( {itemsToMap, setMoveCounter} ) {
   if (loadError) return "Error loading maps"
   if (!isLoaded) return "Loading Maps"
 
-
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
@@ -103,18 +87,23 @@ export default function GameplayMap( {itemsToMap, setMoveCounter} ) {
             onMouseOver={() => {
               setSelected(marker)
             }}
+            onClick={() => {
+              setCurrentLocation(marker.city)
+              setMoveCounter(moveCounter + 1)
+            }}
           />
         )
       })}
       {selected 
         ? (
           <InfoWindow
-            position={{lat: parseFloat(selected.lat), lng: parseFloat(selected.lng)}}
+            position={{lat: (parseFloat(selected.lat)+8), lng: parseFloat(selected.lng)}}
             onCloseClick={() => {
               setSelected(null)
             }}
           >
-            <div style={{ fontWeight: "bold" }}>Lat: {parseFloat(selected.lat)} Lng: {parseFloat(selected.lng)}</div>
+            {/* <div style={{ fontWeight: "bold" }}> {selected.city} (Lat: {parseFloat(selected.lat)} Lng: {parseFloat(selected.lng)})</div> */}
+            <div style={{ fontWeight: "bold" }}> {selected.city} </div>
           </InfoWindow>
       ) : null
       }

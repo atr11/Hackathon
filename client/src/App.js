@@ -20,7 +20,7 @@ function App () {
           city : "Mexico City",
           lat : 17.9459524,
           lng : -100.089394
-        }
+        },
       ])
 
 
@@ -56,68 +56,137 @@ function App () {
 
   // Whenever Current Location changes, update the list of itemsToMap if needed
   useEffect(() => {
-
-  const loadNewMapItems = () => {
-    switch(currentLocation) {
-      case "Mexico City": {
-        let index = 0
-        index = locationList.map(function(e) { return e.city; }).indexOf('Mexico City')
-        let nextCityIndex = index + 1
-        let nextCityName = locationList[nextCityIndex].city
-        let nextCityLat = locationList[nextCityIndex].lat
-        let nextCityLng = locationList[nextCityIndex].lng
-        let counter = 0
-        let cityExists = false
-        while (counter <= itemsToMap.sizeof && cityExists === false){
-          if (itemsToMap[counter].city === nextCityName) {
-            cityExists = true
+    const loadNewMapItems = () => {
+      switch(currentLocation) {
+        case "Mexico City": {
+          let index = 0
+          index = locationList.map(function(e) { return e.city; }).indexOf('Mexico City')
+          let nextCityIndex = index + 1
+          let nextCityName = locationList[nextCityIndex].city
+          let nextCityLat = locationList[nextCityIndex].lat
+          let nextCityLng = locationList[nextCityIndex].lng
+          let counter = 0
+          let cityExists = false
+          while (counter <= itemsToMap.sizeof && cityExists === false){
+            if (itemsToMap[counter].city === nextCityName) {
+              cityExists = true
+            }
+            counter ++
           }
-          counter ++
-        }
-        if (cityExists === false){
-          let objectToPush = {
-            city : nextCityName,
-            lat : nextCityLat,
-            lng : nextCityLng
+          if (cityExists === false){
+            let objectToPush = {
+              city : nextCityName,
+              lat : nextCityLat,
+              lng : nextCityLng
+            }           
+            // setItemsToMap(itemsToMap.push(objectToPush))
+            setItemsToMap(itemsToMap => [...itemsToMap, objectToPush])
           }
-          setItemsToMap(itemsToMap.push(objectToPush))
-          console.log("ItemsToMap = ", itemsToMap)
         }
-      }
         break;
 
-      case "Lima": {}
-        break;
+        case "Lima": {
+          let index = 0
+          index = locationList.map(function(e) { return e.city; }).indexOf('Lima')
+          let outerCount = 0
+          let nextCityIndex = 0
+          let nextCityName = ""
+          let nextCityLat = 0
+          let nextCityLng = 0
+          let counter = 0
+          let cityExists = false
+          nextCityIndex = index + 1
 
-      case "Moscow": {}
-        break;
+          while (outerCount < 3) {
+            nextCityName = locationList[nextCityIndex].city
+            nextCityLat = locationList[nextCityIndex].lat
+            nextCityLng = locationList[nextCityIndex].lng
+            counter = 0
+            cityExists = false
+            while (counter <= itemsToMap.sizeof && cityExists === false){
+              if (itemsToMap[counter].city === nextCityName) {
+                cityExists = true
+              }
+              counter ++
+            }
+            if (cityExists === false){
+              let objectToPush = {
+                city : nextCityName,
+                lat : nextCityLat,
+                lng : nextCityLng
+              }           
+              // setItemsToMap(itemsToMap.push(objectToPush))
+              setItemsToMap(itemsToMap => [...itemsToMap, objectToPush])
+            }
+            nextCityIndex = nextCityIndex + 1
+            outerCount ++
+          }
+        }
+          break;
+
+        case "Moscow": {
+          let index = 0
+          index = locationList.map(function(e) { return e.city; }).indexOf('Moscow')
+          let outerCount = 0
+          let nextCityIndex = 0
+          let nextCityName = ""
+          let nextCityLat = 0
+          let nextCityLng = 0
+          let counter = 0
+          let cityExists = false
+          nextCityIndex = index + 1
+
+          while (outerCount < 2) {
+            nextCityName = locationList[nextCityIndex].city
+            nextCityLat = locationList[nextCityIndex].lat
+            nextCityLng = locationList[nextCityIndex].lng
+            counter = 0
+            cityExists = false
+            while (counter <= itemsToMap.sizeof && cityExists === false){
+              if (itemsToMap[counter].city === nextCityName) {
+                cityExists = true
+              }
+              counter ++
+            }
+            if (cityExists === false){
+              let objectToPush = {
+                city : nextCityName,
+                lat : nextCityLat,
+                lng : nextCityLng
+              }           
+              // setItemsToMap(itemsToMap.push(objectToPush))
+              setItemsToMap(itemsToMap => [...itemsToMap, objectToPush])
+            }
+            nextCityIndex = nextCityIndex + 1
+            outerCount ++
+          }
+        }
+          break;
       
-      case "Sydney": {
-        setRank("Amateur")
-      }
-        break;
+        case "Sydney": {
+          setRank("Amateur")
+          setItemsToMap([])
+        }
+          break;
 
-      case "London": {
-        if (moveCounter < 5) {
-          setRank("Jedi Master")
+        case "London": {
+          if (moveCounter < 5) {
+            setRank("Jedi Master")
+          }
+          else {
+            setRank("Padawan")
+          }
+          setItemsToMap([])
         }
-        else {
-          setRank("Padawan")
-        }
-      }
-        break;
+          break;
         
 
-      default: {}
-        // not understood, don't add any locations to map
+        default: {}
+          // not understood, don't add any locations to map
+      }
     }
-
-    return
-  }
-  loadNewMapItems()
-  // let newMapItems = getNewMapItems(currentLocation)
-
-}, [currentLocation])
+    loadNewMapItems()
+  }, [currentLocation])
 
 
   return(
@@ -135,11 +204,16 @@ function App () {
       <div>
         <div className="map-display-container">
           <div className= "map-and story">
-            <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
+            <GameplayMap itemsToMap={itemsToMap} setCurrentLocation={setCurrentLocation} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
             <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
           </div> 
           <div>
+            MOVES: {moveCounter}
+          </div>
+          <div>
             RANKING: {rank}
+          </div>
+          <div>
             <button onClick={resetGame}> Start Over! </button>
           </div>
         </div>
@@ -149,4 +223,3 @@ function App () {
 }
 
 export default App
-
