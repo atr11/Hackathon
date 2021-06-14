@@ -29,14 +29,26 @@
   color: white;
   margin-right: 1em;
 }
+  
+.map-display-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  margin: 10px;
+
+} 
 
 .map-and-story {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: column;
   flex-direction: flex-start;
   justify-content: space-around;
   width: 100%;
   margin-top: 20px;
+  align-items: baseline;
   
 }
 
@@ -64,7 +76,7 @@
   text-align: center;
   background-color: #BB000E;
   color: #EDF5E1;
-  margin: 10px 10px 10px 10px;
+  margin: 5px 5px 5px 5px;
   font-size: 50px;
   font-family: '28DaysLater.ttf', fantasy;
   font-weight: 200;
@@ -75,12 +87,12 @@
   background-color: #BB000E;
   color: #EDF5E1;
   padding: 5px;
-  justify-content: left;
+  justify-content: space-between;
 }
 
 .intro-tagline {
   font-size: calc(10px + 0.8vw);
   margin-right: 10px;
   color: #1C1C1C;
-  text-align: left;
+  text-align: center;
 }

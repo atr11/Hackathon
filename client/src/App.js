@@ -23,7 +23,6 @@ function App () {
 
   return(
     <div className="main-background">
-        <div className="map-and-story">
           <div className="intro">
             <div className="intro-header-container">
               <h1 className="intro-header">Global Predator</h1>
@@ -32,20 +31,16 @@ function App () {
                     <p>
                     You thought a peaceful life lay ahead but peace doesn't exist when other people's thoughts drift through your mind
                     </p>
-                </div>
+                </div>             
           </div>
-          <GameplayMap />
-        </div>
-        <div>
-            <div>
-              <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
-            </div>
-            <div>
-              <ContinueStory itemsToMap = {itemsToMap}/>
-            </div>
-            <button> Start Over! </button>
-        </div>
-    </div>    
+          <div className="map-display-container">
+             <div className= "map-and story">
+                <GameplayMap />
+                <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
+              </div> 
+          <button> Start Over! </button>
+          </div>
+      </div>    
   )  
 }
 
