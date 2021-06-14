@@ -97,7 +97,7 @@ export default function GameplayMap( {itemsToMap, setCurrentLocation, moveCounte
       {selected 
         ? (
           <InfoWindow
-            position={{lat: (parseFloat(selected.lat)+8), lng: parseFloat(selected.lng)}}
+            position={{lat: (parseFloat(selected.lat)+12), lng: parseFloat(selected.lng)}}
             onCloseClick={() => {
               setSelected(null)
             }}

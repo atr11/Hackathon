@@ -207,11 +207,11 @@ function App () {
             <GameplayMap itemsToMap={itemsToMap} setCurrentLocation={setCurrentLocation} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
             <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
           </div>
-          <div className="moves-container">
-            MOVES: {moveCounter}
-          </div>
           <div className="rank-container">
             RANKING: {rank}
+            <div>
+              MOVES: {moveCounter}
+            </div>
           </div>
           <div className="reset-game">
             <button onClick={resetGame}> Start Over! </button>
