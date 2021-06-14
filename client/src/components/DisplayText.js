@@ -8,7 +8,7 @@ const DisplayText = ( {locationList, currentLocation} ) => {
     // let storyText = locationList[0].description
     let storyText = ""
     let index = 0
-    index = locationList.map(function(e) { return e.city; }).indexOf('Mexico City')
+    index = locationList.map(function(e) { return e.city; }).indexOf(currentLocation)
     if (index > -1) {
         storyText = locationList[index].description
       }

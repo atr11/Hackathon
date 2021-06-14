@@ -24,7 +24,7 @@ const options = {
   zoomControl: true
 }
 
-export default function GameplayMap() {
+export default function GameplayMap( {itemsToMap} ) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries
