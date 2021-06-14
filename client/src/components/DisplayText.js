@@ -1,5 +1,5 @@
 import React from "react"
-import "./DisplayText.css"
+//import "./DisplayText.css"
 
 const DisplayText = ( {locationList, currentLocation} ) => {
 

@@ -134,12 +134,14 @@ function App () {
       </div>
       <div>
         <div className="map-display-container">
-          <div className= "map-and story">
-            <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
-            <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
-          </div> 
-          <div>
+          <div className= "map-and-story">
+             <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} setMoveCounter={setMoveCounter} />
+              <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
+          </div>
+          <div className="rank-container">
             RANKING: {rank}
+          </div>
+          <div className="reset-game">
             <button onClick={resetGame}> Start Over! </button>
           </div>
         </div>
