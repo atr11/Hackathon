@@ -122,28 +122,28 @@ function App () {
 
   return(
     <div className="main-background">
-        <div className="map-and-story">
-          <div className="intro">
-            <div className="intro-header-container">
-              <h1 className="intro-header">Global Predator</h1>
-            </div>
-                <div className="intro-tagline">
-                    <p>
-                    You thought a peaceful life lay ahead but peace doesn't exist when other people's thoughts drift through your mind
-                    </p>
-                </div>
+      <div className="intro">
+        <div className="intro-header-container">
+          <h1 className="intro-header">Global Predator</h1>
+        </div>
+        <div className="intro-tagline">
+          <p>
+            You thought a peaceful life lay ahead but peace doesn't exist when other people's thoughts drift through your mind
+          </p>
+        </div>             
+      </div>
+      <div>
+        <div className="map-display-container">
+          <div className= "map-and story">
+            <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} />
+            <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
+          </div> 
+          <div>
+            RANKING: {rank}
+            <button onClick={resetGame}> Start Over! </button>
           </div>
-          <GameplayMap itemsToMap={itemsToMap} moveCounter={moveCounter} />
         </div>
-        <div>
-            <div>
-              <DisplayText locationList = {locationList} currentLocation = {currentLocation} />
-            </div>
-            <div>
-              RANKING: {rank}
-              <button onClick={resetGame}> Start Over! </button>
-            </div>
-        </div>
+      </div>    
     </div>    
   )  
 }

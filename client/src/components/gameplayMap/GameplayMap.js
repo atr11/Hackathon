@@ -15,7 +15,7 @@ const mapContainerStyle = {
   minWidth: "575px"
 }
 const center = {
-  lat: 51.01,
+  lat: 0,
   lng: -114.1
 }
 const options = {
