@@ -4,7 +4,7 @@
   font-family: '28DaysLater';
   font-style: normal;
   font-weight: normal;
-  src: local('28DaysLater'), url('28DaysLater.ttf') format("ttf");
+  src: url('28DaysLater.ttf');
 }
   *:not(i) {
     font-family: "28DaysLater", fantasy;
@@ -18,7 +18,7 @@
   display: flex; 
   flex-flow: row wrap;
   justify-content: space-around; 
-  margin-top: 25px; 
+  margin-top: 10px; 
   margin-bottom: 25px; 
 
 } 
@@ -29,7 +29,7 @@
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 10 px;
   align-items: top;
   flex-basis: 100 px;
@@ -39,8 +39,10 @@
 
 .DisplayText {
   color: #3e0000;
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 50px;
+  width: 45%;
+  text-indent: 30px;
 }
 
 .intro-content {
@@ -67,8 +69,9 @@
   color: #EDF5E1;
   margin: 5px 0px 5px 0px;
   font-size: 40px;
-  font-family: '28DaysLater.ttf', fantasy;
+  font-family: "28DaysLater";
   font-weight: 100;
+  letter-spacing: 8px;
 }
 
 .intro-header-container {
@@ -90,7 +93,12 @@
   color: #1C1C1C;
   font-weight: bold;
   background-color: #BB000E;
-  margin: 30px 30px 30px 30px;
+  margin: 20px 20px 20px 20px;
   padding: 1rem;
+  align-items: center;
+  text-align: center;
 }
 
+p.a {
+  word-spacing: 30 px;
+}

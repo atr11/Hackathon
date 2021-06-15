@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import GameplayMap from './components/gameplayMap/GameplayMap'
 import DisplayText from './components/DisplayText'
 
+
 function App () {
 
   // Define State Variables
@@ -196,7 +197,7 @@ function App () {
           <h1 className="intro-header">Global Predator</h1>
         </div>
         <div className="intro-tagline">
-          <p>
+          <p className="a">
             You thought a peaceful life lay ahead but peace doesn't exist when other people's thoughts drift through your mind
           </p>
         </div>             
